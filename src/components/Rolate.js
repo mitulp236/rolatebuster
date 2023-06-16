@@ -10,9 +10,9 @@ export default function Rolate({ name }) {
   const listX = ['1', '2', '3', '4', '5', '6', '31', '32', '33', '34', '35', '36'];
   const listY = ['7', '8', '9', '10', '11', '12', '25', '26', '27', '28', '29', '30'];
   const listZ = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
-  const listE = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-  const listF = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24']
-  const listG = ['25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36']
+  const listE = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  const listF = ['13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+  const listG = ['25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36'];
 
   const [valueText, setValueText] = useState('');
 
@@ -104,7 +104,7 @@ export default function Rolate({ name }) {
     e.preventDefault();
     method1();
     method2();
-    method3()
+    method3();
     setValueText('');
   };
 
@@ -175,16 +175,16 @@ export default function Rolate({ name }) {
 
       <DisplayMethodValueList valueList={method1ValueList} methodName={'Brahma'} />
       <br />
-      <DisplayMethodValueList valueList={method2ValueList}  methodName={'Vishnu'} />
+      <DisplayMethodValueList valueList={method2ValueList} methodName={'Vishnu'} />
       <br />
-      <DisplayMethodValueList valueList={method3ValueList}  methodName={'Mahesh'} />
+      <DisplayMethodValueList valueList={method3ValueList} methodName={'Mahesh'} />
 
       <br />
       <DisplayMethodResult result={method1Result} rolateName={name} methodName={'Brahma'} />
       <br />
       <DisplayMethodResult result={method2Result} rolateName={name} methodName={'Vishnu'} />
       <br />
-      <DisplayMethodResult result={method3Result} rolateName={name} methodName={"Mahesh"} />
+      <DisplayMethodResult result={method3Result} rolateName={name} methodName={'Mahesh'} />
     </>
   );
 }
@@ -192,29 +192,33 @@ export default function Rolate({ name }) {
 function DisplayMethodValueList({ valueList, methodName }) {
   return (
     <div>
-        Method: {methodName}
-      <h3>
-        {valueList &&
-          valueList.map((i, index) => {
-            return (
-              <span key={index}>
-                <>
-                  <button
-                    disabled={true}
-                    className='className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"'
-                  >
-                    <span>
-                      <b>{i.data}</b>
-                    </span>{' '}
-                    <hr />
-                    {''}
-                    <span>{i.val}</span>
-                  </button>{' '}
-                </>
-              </span>
-            );
-          })}
-      </h3>
+      {valueList && valueList.length > 0 && (
+        <>
+          Method: {methodName}
+          <h3>
+            {valueList &&
+              valueList.map((i, index) => {
+                return (
+                  <span key={index}>
+                    <>
+                      <button
+                        disabled={true}
+                        className='className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"'
+                      >
+                        <span>
+                          <b>{i.data}</b>
+                        </span>{' '}
+                        <hr />
+                        {''}
+                        <span>{i.val}</span>
+                      </button>{' '}
+                    </>
+                  </span>
+                );
+              })}
+          </h3>
+        </>
+      )}
     </div>
   );
 }
@@ -226,8 +230,8 @@ function DisplayMethodResult({ result, rolateName, methodName }) {
         <>
           <h3>
             Alert: {result.status ? 'YES' : 'NO'} for rolate:{' '}
-            <span style={{ color: 'blue' }}>{rolateName}</span> {' '}
-            and Method name: <span style={{ color: 'blue' }}>{methodName}</span>
+            <span style={{ color: 'blue' }}>{rolateName}</span> and Method name:{' '}
+            <span style={{ color: 'blue' }}>{methodName}</span>
           </h3>
           <h3>
             {result &&
