@@ -77,19 +77,19 @@ export default function Rolate({ name }) {
 
   const method3 = () => {
     let current;
-    if (listX.includes(valueText)) {
+    if (listE.includes(valueText)) {
       setMethod3ValueList((prev) => [
         ...prev,
         { data: 'E', val: valueText, index: prev.length + 1 },
       ]);
       current = { data: 'E', val: valueText, index: method3ValueList.length + 1 };
-    } else if (listY.includes(valueText)) {
+    } else if (listF.includes(valueText)) {
       setMethod3ValueList((prev) => [
         ...prev,
         { data: 'F', val: valueText, index: prev.length + 1 },
       ]);
       current = { data: 'F', val: valueText, index: method3ValueList.length + 1 };
-    } else if (listZ.includes(valueText)) {
+    } else if (listG.includes(valueText)) {
       setMethod3ValueList((prev) => [
         ...prev,
         { data: 'G', val: valueText, index: prev.length + 1 },
