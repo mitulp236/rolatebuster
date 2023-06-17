@@ -47,7 +47,7 @@ export default function Rolate({ name }) {
       current = { data: 'C', val: valueText, index: method1ValueList.length + 1 };
     }
     let updatedRecords = current ? [...method1ValueList, current] : [...method1ValueList];
-    alertCalculation(updatedRecords, 4, setMethod1Result);
+    alertCalculation(updatedRecords, 3, setMethod1Result);
   };
 
   const method2 = () => {
@@ -72,7 +72,7 @@ export default function Rolate({ name }) {
       current = { data: 'Z', val: valueText, index: method2ValueList.length + 1 };
     }
     let updatedRecords = current ? [...method2ValueList, current] : [...method2ValueList];
-    alertCalculation(updatedRecords, 4, setMethod2Result);
+    alertCalculation(updatedRecords, 3, setMethod2Result);
   };
 
   const method3 = () => {
@@ -97,7 +97,7 @@ export default function Rolate({ name }) {
       current = { data: 'G', val: valueText, index: method3ValueList.length + 1 };
     }
     let updatedRecords = current ? [...method3ValueList, current] : [...method3ValueList];
-    alertCalculation(updatedRecords, 4, setMethod3Result);
+    alertCalculation(updatedRecords, 3, setMethod3Result);
   };
 
   const onSubmit = (e) => {
