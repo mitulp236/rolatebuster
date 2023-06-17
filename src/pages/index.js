@@ -1,9 +1,9 @@
-"use client"
-
+import './globals.css'
 import Rolate from '@/components/Rolate';
 import { useState } from 'react';
 
-function Home() {
+
+function Index() {
   const [rolateName, setRolateName] = useState("")
 
   function onSubmit(e){
@@ -40,4 +40,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Index;
