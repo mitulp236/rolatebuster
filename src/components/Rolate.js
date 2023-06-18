@@ -1,7 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Rolate({ name }) {
   const listA = ['1', '4', '7', '10', '13', '16', '19', '22', '25', '28', '31', '34'];
@@ -32,22 +34,22 @@ export default function Rolate({ name }) {
         ...prev,
         { data: 'A', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'A', val: valueText, index: method1ValueList.length + 1 };
+    //   current = { data: 'A', val: valueText, index: method1ValueList.length + 1 };
     } else if (listB.includes(valueText)) {
       setMethod1ValueList((prev) => [
         ...prev,
         { data: 'B', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'B', val: valueText, index: method1ValueList.length + 1 };
+    //   current = { data: 'B', val: valueText, index: method1ValueList.length + 1 };
     } else if (listC.includes(valueText)) {
       setMethod1ValueList((prev) => [
         ...prev,
         { data: 'C', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'C', val: valueText, index: method1ValueList.length + 1 };
+    //   current = { data: 'C', val: valueText, index: method1ValueList.length + 1 };
     }
     let updatedRecords = current ? [...method1ValueList, current] : [...method1ValueList];
-    alertCalculation(updatedRecords, 3, setMethod1Result);
+    // alertCalculation(updatedRecords, 3, setMethod1Result);
   };
 
   const method2 = () => {
@@ -57,22 +59,22 @@ export default function Rolate({ name }) {
         ...prev,
         { data: 'X', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'X', val: valueText, index: method2ValueList.length + 1 };
+    //   current = { data: 'X', val: valueText, index: method2ValueList.length + 1 };
     } else if (listY.includes(valueText)) {
       setMethod2ValueList((prev) => [
         ...prev,
         { data: 'Y', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'Y', val: valueText, index: method2ValueList.length + 1 };
+    //   current = { data: 'Y', val: valueText, index: method2ValueList.length + 1 };
     } else if (listZ.includes(valueText)) {
       setMethod2ValueList((prev) => [
         ...prev,
         { data: 'Z', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'Z', val: valueText, index: method2ValueList.length + 1 };
+    //   current = { data: 'Z', val: valueText, index: method2ValueList.length + 1 };
     }
-    let updatedRecords = current ? [...method2ValueList, current] : [...method2ValueList];
-    alertCalculation(updatedRecords, 3, setMethod2Result);
+    // let updatedRecords = current ? [...method2ValueList, current] : [...method2ValueList];
+    // alertCalculation(updatedRecords, 3, setMethod2Result);
   };
 
   const method3 = () => {
@@ -82,22 +84,22 @@ export default function Rolate({ name }) {
         ...prev,
         { data: 'E', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'E', val: valueText, index: method3ValueList.length + 1 };
+    //   current = { data: 'E', val: valueText, index: method3ValueList.length + 1 };
     } else if (listF.includes(valueText)) {
       setMethod3ValueList((prev) => [
         ...prev,
         { data: 'F', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'F', val: valueText, index: method3ValueList.length + 1 };
+    //   current = { data: 'F', val: valueText, index: method3ValueList.length + 1 };
     } else if (listG.includes(valueText)) {
       setMethod3ValueList((prev) => [
         ...prev,
         { data: 'G', val: valueText, index: prev.length + 1 },
       ]);
-      current = { data: 'G', val: valueText, index: method3ValueList.length + 1 };
+    //   current = { data: 'G', val: valueText, index: method3ValueList.length + 1 };
     }
-    let updatedRecords = current ? [...method3ValueList, current] : [...method3ValueList];
-    alertCalculation(updatedRecords, 3, setMethod3Result);
+    // let updatedRecords = current ? [...method3ValueList, current] : [...method3ValueList];
+    // alertCalculation(updatedRecords, 3, setMethod3Result);
   };
 
   const onSubmit = (e) => {
@@ -114,7 +116,7 @@ export default function Rolate({ name }) {
   }
 
   const alertCalculation = (arr, countLimit = 4, setResult) => {
-    let list = arr;
+    let list = [...arr];
     const unmodifinedList = [...arr];
 
     let count = 0;
@@ -125,13 +127,13 @@ export default function Rolate({ name }) {
       if (hasNoDuplicates(records) && records.length == 3) {
         count = count + 1;
         list.length = list.length - 1;
-        console.log('li', list);
+        // console.log('li', list);
       } else {
         break;
       }
     }
     // console.log("records", records)
-    console.log('count', count);
+    // console.log('count', count);
     if (count >= countLimit) {
       let flg = count + 2;
       console.log('flg', flg, unmodifinedList.slice(-flg));
@@ -140,6 +142,20 @@ export default function Rolate({ name }) {
       setResult({ status: false, count: 0, data: [] });
     }
   };
+
+  function deleteRecord(index) {
+    setMethod1ValueList(method1ValueList.filter(item => item.index !== index));
+    setMethod2ValueList(method2ValueList.filter(item => item.index !== index));
+    setMethod3ValueList(method3ValueList.filter(item => item.index !== index));
+    toast('Item deleted!', { hideProgressBar: false, autoClose: 2000, type: 'success' })
+  }
+
+  useEffect(() => {
+    alertCalculation(method1ValueList, 3, setMethod1Result);
+    alertCalculation(method2ValueList, 3, setMethod2Result);
+    alertCalculation(method3ValueList, 3, setMethod3Result);
+  }, [method1ValueList, method2ValueList,method3ValueList])
+  
 
   return (
     <>
@@ -173,11 +189,11 @@ export default function Rolate({ name }) {
         </p>
       </div>
 
-      <DisplayMethodValueList valueList={method1ValueList} methodName={'Brahma'} />
+      <DisplayMethodValueList valueList={method1ValueList} methodName={'Brahma'} deleteRecord={deleteRecord} />
       <br />
-      <DisplayMethodValueList valueList={method2ValueList} methodName={'Vishnu'} />
+      <DisplayMethodValueList valueList={method2ValueList} methodName={'Vishnu'} deleteRecord={deleteRecord} />
       <br />
-      <DisplayMethodValueList valueList={method3ValueList} methodName={'Mahesh'} />
+      <DisplayMethodValueList valueList={method3ValueList} methodName={'Mahesh'} deleteRecord={deleteRecord} />
 
       <br />
       <DisplayMethodResult result={method1Result} rolateName={name} methodName={'Brahma'} />
@@ -189,7 +205,7 @@ export default function Rolate({ name }) {
   );
 }
 
-function DisplayMethodValueList({ valueList, methodName }) {
+function DisplayMethodValueList({ valueList, methodName, deleteRecord }) {
   return (
     <div>
       {valueList && valueList.length > 0 && (
@@ -202,8 +218,9 @@ function DisplayMethodValueList({ valueList, methodName }) {
                   <span key={index}>
                     <>
                       <button
-                        disabled={true}
+                        // disabled={true}
                         className='className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"'
+                        onDoubleClick={() => deleteRecord(i.index)}
                       >
                         <span>
                           <b>{i.data}</b>
